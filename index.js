@@ -11,13 +11,8 @@ function getComputerChoice() {
     return compChoice;
 }
 
-let playerSelection;
-let computerSelection;
 
-function playRound() {
-    playerSelection = prompt('Please enter your choice.');
-    computerSelection = getComputerChoice();
-    console.log("You chose " + playerSelection + ". The computer chose " + computerSelection + ".");
+function playRound(playerSelection, computerSelection) {    
     switch(playerSelection) {
         case 'rock': 
                 if (computerSelection.toLowerCase() === 'paper') {
@@ -25,6 +20,9 @@ function playRound() {
                 }
                 else if (computerSelection.toLowerCase() === 'scissors') {
                         return playerSelection;
+                }
+                else {
+                        return 'No one';
                 }
                 break;
         case 'paper':
@@ -34,6 +32,9 @@ function playRound() {
                 else if (computerSelection.toLowerCase() === 'scissors') {
                         return computerSelection;
                 }
+                else {
+                        return 'No one';
+                }
                 break;
         case 'scissors': {
                 if (computerSelection.toLowerCase() === 'paper') {
@@ -42,32 +43,73 @@ function playRound() {
                 else if (computerSelection.toLowerCase() === 'rock') {
                         return computerSelection;
                 }
+                else {
+                        return 'no one';
+                }
                 break; 
         }
         }
 }
 
+const buttons = document.querySelectorAll('button');
+const gameInfo = document.createElement('div');
+gameInfo.classList.add('gameInfo');
+const content = document.querySelector('.content');
+const winner = document.createElement('p');
+const score = document.createElement('div');
+const pScore = document.createElement('p');
+const cScore = document.createElement('p');
 
-function game() {
-        let playerScore = 0;
-        let computerScore = 0;
-        let winner;
-        while(playerScore < 5 && computerScore < 5) {
-                winner = playRound();
-                if(winner === playerSelection) {
+
+let playerScore = 0;
+let computerScore = 0;
+
+gameInfo.appendChild(winner);
+gameInfo.appendChild(score);
+score.appendChild(pScore);
+score.appendChild(cScore);
+
+buttons.forEach((button) => {
+        button.addEventListener('click', function(e) {
+                winner.textContent = playRound(button.textContent.toLowerCase(), getComputerChoice()) + ' wins this round.';
+                content.appendChild(gameInfo);
+                if(winner.textContent.includes(button.textContent.toLowerCase())) {
                         playerScore++;
-                        console.log("You win this round.");
                 }
-                else if(winner === computerSelection) {
+                else if(winner.textContent.includes('No one')) {
+                        //no score gets updated
+                }
+                else {
                         computerScore++;
-                        console.log("The computer wins this round.");
                 }
-                console.log("Your score: " + playerScore + "\nComputer score: " + computerScore);
-        }
+                checkScore();
+                pScore.textContent = 'Player Score: ' + playerScore;
+                cScore.textContent = 'Computer Score: ' + computerScore;
+        });
+})
+
+function checkScore() {
         if(playerScore === 5) {
-                console.log("You win.");
+                winner.textContent = 'Player won the game.';
+                winner.style.fontSize = '40px';
+                winner.style.color = 'black';
+                playerScore = 0;
+                computerScore = 0;
+                document.getElementById('title').textContent = 'Please reload if you want to play again (CTRL+R).';
+                document.getElementById('rock').disabled = true;
+                document.getElementById('paper').disabled = true;
+                document.getElementById('scissors').disabled = true;
         }
-        else {
-                console.log("The computer wins");
+        else if (computerScore === 5) {
+                winner.textContent = 'Computer won the game.';
+                winner.style.fontSize = '40px';
+                winner.style.color = 'black';
+                playerScore = 0;
+                computerScore = 0;
+                document.getElementById('title').textContent = 'Please reload if you want to play again (CTRL+R).';
+                document.getElementById('rock').disabled = true;
+                document.getElementById('paper').disabled = true;
+                document.getElementById('scissors').disabled = true;
         }
+        return winner.textContent;
 }

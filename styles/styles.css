@@ -1,5 +1,60 @@
-div {
-    background-color: red;
-    height: 100px;
-    width: 100px;
+* {
+    font-family: 'Press Start 2P', cursive;
+}
+
+body {
+    background-color: #c309ff;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 95vh;
+    gap: 20px;
+}
+
+.content > p {
+    font-size: 20px;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    gap: 100px;
+}
+
+button {
+    background-color: #ff05bb;
+    height: 250px;
+    width: 250px;
+    padding: 20px;
+    border-radius: 5%;
+    color: white;
+    border: 0px;
+}
+
+.gameInfo {
+    font-size: 20px;
+    color: white;
+}
+
+#rock:hover {
+    background-color: rgb(245, 5, 233);
+    height: 260px;
+    width: 260px;
+}
+
+#paper:hover {
+    background-color: rgb(245, 5, 233);
+    height: 260px;
+    width: 260px;
+}
+
+#scissors:hover {
+    background-color: rgb(245, 5, 233);
+    height: 260px;
+    width: 260px;
 }
