@@ -93,8 +93,6 @@ function checkScore() {
                 winner.textContent = 'Player won the game.';
                 winner.style.fontSize = '40px';
                 winner.style.color = 'black';
-                playerScore = 0;
-                computerScore = 0;
                 document.getElementById('title').textContent = 'Please reload if you want to play again (CTRL+R).';
                 document.getElementById('rock').disabled = true;
                 document.getElementById('paper').disabled = true;
@@ -104,8 +102,6 @@ function checkScore() {
                 winner.textContent = 'Computer won the game.';
                 winner.style.fontSize = '40px';
                 winner.style.color = 'black';
-                playerScore = 0;
-                computerScore = 0;
                 document.getElementById('title').textContent = 'Please reload if you want to play again (CTRL+R).';
                 document.getElementById('rock').disabled = true;
                 document.getElementById('paper').disabled = true;
