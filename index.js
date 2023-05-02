@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection) {
                         return computerSelection;
                 }
                 else {
-                        return 'no one';
+                        return 'No one';
                 }
                 break; 
         }
